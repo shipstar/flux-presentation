@@ -1,4 +1,7 @@
 import React from 'react'
+
+import lodash from 'lodash'
+
 import PageActions from 'actions/page'
 import slideStore from 'stores/slide'
 
@@ -6,7 +9,9 @@ class Presentation extends React.Component {
   constructor() {
     super()
 
-    this.state = this.getState()
+    this.state = _.extend(this.getState(), {
+      adding: false
+    })
   }
 
   getState() {
@@ -52,6 +57,12 @@ class Presentation extends React.Component {
     }
   }
 
+  toggleAddSlide(e) {
+    e.preventDefault()
+
+    this.setState({ adding: !this.state.adding })
+  }
+
   render() {
     let prevLink
     if (slideStore.hasPrev()) {
@@ -63,16 +74,65 @@ class Presentation extends React.Component {
       nextLink = <a className='slide__next' href='#' onClick={e => this.forward()}>{'>'}</a>
     }
 
+    let addSlideForm
+    if (this.state.adding) {
+      addSlideForm = <SlideForm id={slideStore.getNextId()} onCancel={e => this.toggleAddSlide(e)} />
+    }
+
     return (
       <div className='slide'>
         <div className='slide__title'>{this.state.slide.title}</div>
         <div className='slide__body'>{this.state.slide.body}</div>
+        <div className='slide__form'>{addSlideForm}</div>
         <div className='slide__nav'>
+          <a href='#' onClick={e => this.toggleAddSlide(e)}>+</a>
+          <br/>
           {prevLink}
           {this.state.page}
           {nextLink}
         </div>
       </div>
+    )
+  }
+}
+
+class SlideForm extends React.Component {
+  constructor(props) {
+    super()
+
+    this.state = {
+      id: props.id,
+      title: '',
+      body: ''
+    }
+  }
+
+  changeValue(e) {
+    let nextState = {}
+    nextState[e.target.name] = e.target.value
+    this.setState(nextState)
+  }
+
+  submit(e) {
+    e.preventDefault()
+    console.warn('submitting!', this.state)
+  }
+
+  render() {
+    return (
+      <form onSubmit={e => this.submit(e)}>
+        <label>Title</label>
+        <input name='title' value={this.state.title} onChange={e => this.changeValue(e)} />
+
+        <br/>
+
+        <label>Body</label>
+        <input name='body' value={this.state.body} onChange={e => this.changeValue(e)} />
+
+        <br/>
+
+        <button>Add</button> or <a href='#' onClick={e => this.props.onCancel(e)}>cancel</a>
+      </form>
     )
   }
 }

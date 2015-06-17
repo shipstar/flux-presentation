@@ -18,10 +18,15 @@ class SlideStore {
       { id: 2, title: 'Another slide', body: 'Page 2 of my magnum opus' },
       { id: 3, title: "Here's a third slide", body: '...to tide you over' }
     ]
+    this.nextId = this.slides.length + 1
   }
 
   getPage() {
     return this.page
+  }
+
+  getNextId() {
+    return this.nextId
   }
 
   getCurrentSlide() {

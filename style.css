@@ -5,7 +5,7 @@ html {
 
 body {
   font-family: 'Muli', sans-serif;
-  margin: 50px 0 30px;
+  margin: 50px 0 100px;
 }
 
 a {
@@ -28,11 +28,17 @@ a {
   line-height: 64px;
 }
 
+.slide__form {
+  position: absolute;
+  top: 75%;
+  left: 40%;
+}
+
 .slide__nav {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 60px;
+  height: 100px;
   width: 100%;
   font-size: 32px;
   line-height: 40px;

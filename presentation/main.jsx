@@ -18,9 +18,17 @@ class Presentation extends React.Component {
   componentDidMount() {
     pageStore.addChangeListener(e => this.onStoreChange())
 
-    setTimeout(() => {
-      PageActions.change(this.state.page + 1)
-    }, 1000)
+    window.onkeydown = (e) => {
+      switch (e.keyIdentifier) {
+        case 'Right':
+          PageActions.change(this.state.page + 1)
+          break
+
+        case 'Left':
+          PageActions.change(this.state.page - 1)
+          break
+      }
+    }
   }
 
   componentWillUnmount() {

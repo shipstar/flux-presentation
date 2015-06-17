@@ -1,0 +1,36 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Muli', sans-serif;
+  margin: 50px 0 30px;
+}
+
+.slide {
+  text-align: center;
+}
+
+.slide__title {
+  margin-bottom: 50px;
+  font-family: 'Podkova', serif;
+  font-size: 96px;
+  line-height: 116px;
+}
+
+.slide__body {
+  font-size: 48px;
+  line-height: 64px;
+}
+
+.slide__nav {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  font-size: 32px;
+  line-height: 40px;
+  color: #888;
+}

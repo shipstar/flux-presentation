@@ -46,10 +46,10 @@ class Presentation extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>{this.state.slide.title}</h1>
-        <div>{this.state.slide.body}</div>
-        <div>{this.state.page}</div>
+      <div className='slide'>
+        <div className='slide__title'>{this.state.slide.title}</div>
+        <div className='slide__body'>{this.state.slide.body}</div>
+        <div className='slide__nav'>{this.state.page}</div>
       </div>
     )
   }

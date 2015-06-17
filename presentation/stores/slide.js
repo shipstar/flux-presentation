@@ -14,6 +14,10 @@ const rawSlides = [
     body: 'Kyle Shipley'
   },
   {
+    title: 'GET EXCITED',
+    body: '<img src="https://pbs.twimg.com/media/CHua86jVEAAf6mi.png:large" />'
+  },
+  {
     title: 'Why Flux?',
     body: `Every framework can be viewed as an attempt to say "the hardest part of writing a webapp is {X}, so here's some code to make that easier."`
   },
@@ -152,6 +156,7 @@ const rawSlides = [
         <li>Singleton stores?</li>
         <li>Stores fetching data vs. actions vs. queries?</li>
         <li>Local component state vs. stores for UI?</li>
+        <li>React relay?</li>
       </ul>
     `
   },

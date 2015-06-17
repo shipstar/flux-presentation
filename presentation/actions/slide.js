@@ -7,5 +7,13 @@ export default {
       source: 'VIEW',
       data: { page }
     })
+  },
+
+  add(slide) {
+    dispatcher.handle({
+      type: 'ADD_SLIDE',
+      source: 'VIEW',
+      data: { slide }
+    })
   }
 }

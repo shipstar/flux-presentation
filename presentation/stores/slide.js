@@ -47,11 +47,22 @@ class SlideStore {
         this.changePage(action.data)
         this.emitChange()
         break
+
+      case 'ADD_SLIDE':
+        this.addSlide(action.data)
+        this.emitChange()
+        break
     }
   }
 
   changePage({ page }) {
     this.page = page
+  }
+
+  addSlide({ slide }) {
+    this.slides.push(slide)
+    this.nextId++
+    this.page = slide.id
   }
 
   addChangeListener(callback) {

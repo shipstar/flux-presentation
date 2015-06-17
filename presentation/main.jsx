@@ -2,7 +2,7 @@ import React from 'react'
 
 import lodash from 'lodash'
 
-import PageActions from 'actions/page'
+import SlideActions from 'actions/slide'
 import slideStore from 'stores/slide'
 
 class Presentation extends React.Component {
@@ -47,13 +47,13 @@ class Presentation extends React.Component {
 
   forward() {
     if (slideStore.hasNext()) {
-      PageActions.change(this.state.page + 1)
+      SlideActions.change(this.state.page + 1)
     }
   }
 
   back() {
     if (slideStore.hasPrev()) {
-      PageActions.change(this.state.page - 1)
+      SlideActions.change(this.state.page - 1)
     }
   }
 
@@ -107,6 +107,10 @@ class SlideForm extends React.Component {
     }
   }
 
+  componentWillMount() {
+
+  }
+
   changeValue(e) {
     let nextState = {}
     nextState[e.target.name] = e.target.value
@@ -115,19 +119,26 @@ class SlideForm extends React.Component {
 
   submit(e) {
     e.preventDefault()
-    console.warn('submitting!', this.state)
+
+    SlideActions.add(this.state)
+    this.props.onCancel(e)
   }
 
   render() {
     return (
       <form onSubmit={e => this.submit(e)}>
         <label>Title</label>
-        <input name='title' value={this.state.title} onChange={e => this.changeValue(e)} />
+        <input name='title'
+               autoFocus={true}
+               value={this.state.title}
+               onChange={e => this.changeValue(e)} />
 
         <br/>
 
         <label>Body</label>
-        <input name='body' value={this.state.body} onChange={e => this.changeValue(e)} />
+        <input name='body'
+               value={this.state.body}
+               onChange={e => this.changeValue(e)} />
 
         <br/>
 

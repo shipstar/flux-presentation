@@ -1,6 +1,6 @@
 import React from 'react'
 import PageActions from 'actions/page'
-import pageStore from 'stores/page'
+import slideStore from 'stores/slide'
 
 class Presentation extends React.Component {
   constructor() {
@@ -11,12 +11,12 @@ class Presentation extends React.Component {
 
   getState() {
     return {
-      page: pageStore.page
+      page: slideStore.page
     }
   }
 
   componentDidMount() {
-    pageStore.addChangeListener(e => this.onStoreChange())
+    slideStore.addChangeListener(e => this.onStoreChange())
 
     window.onkeydown = (e) => {
       switch (e.keyIdentifier) {
@@ -32,7 +32,7 @@ class Presentation extends React.Component {
   }
 
   componentWillUnmount() {
-    pageStore.removeChangeListener(e => this.onStoreChange())
+    slideStore.removeChangeListener(e => this.onStoreChange())
   }
 
   onStoreChange() {

@@ -6,7 +6,7 @@ const CHANGE_EVENT = 'change'
 const emitter = new EventEmitter
 emitter.setMaxListeners(0)
 
-class PageStore {
+class SlideStore {
   constructor() {
     this.dispatchToken = dispatcher.register(e => this.handleAction(e))
     this.page = 1
@@ -44,4 +44,4 @@ class PageStore {
   }
 }
 
-export default new PageStore
+export default new SlideStore

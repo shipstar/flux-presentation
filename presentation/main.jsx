@@ -22,15 +22,11 @@ class Presentation extends React.Component {
     window.onkeydown = (e) => {
       switch (e.keyIdentifier) {
         case 'Right':
-          if (slideStore.hasNext()) {
-            PageActions.change(this.state.page + 1)
-          }
+          this.forward()
           break
 
         case 'Left':
-          if (slideStore.hasPrev()) {
-            PageActions.change(this.state.page - 1)
-          }
+          this.back()
           break
       }
     }
@@ -44,12 +40,38 @@ class Presentation extends React.Component {
     this.setState(this.getState())
   }
 
+  forward() {
+    if (slideStore.hasNext()) {
+      PageActions.change(this.state.page + 1)
+    }
+  }
+
+  back() {
+    if (slideStore.hasPrev()) {
+      PageActions.change(this.state.page - 1)
+    }
+  }
+
   render() {
+    let prevLink
+    if (slideStore.hasPrev()) {
+      prevLink = <a className='slide__prev' href='#' onClick={e => this.back()}>{'<'}</a>
+    }
+
+    let nextLink
+    if (slideStore.hasNext()) {
+      nextLink = <a className='slide__next' href='#' onClick={e => this.forward()}>{'>'}</a>
+    }
+
     return (
       <div className='slide'>
         <div className='slide__title'>{this.state.slide.title}</div>
         <div className='slide__body'>{this.state.slide.body}</div>
-        <div className='slide__nav'>{this.state.page}</div>
+        <div className='slide__nav'>
+          {prevLink}
+          {this.state.page}
+          {nextLink}
+        </div>
       </div>
     )
   }

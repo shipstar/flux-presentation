@@ -12,6 +12,10 @@
     "webpack": "^1.9.11"
   },
   "dependencies": {
+    "lodash": "^3.9.3",
     "react": "^0.13.3"
+  },
+  "scripts": {
+    "watch": "webpack -w"
   }
 }

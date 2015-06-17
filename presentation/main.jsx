@@ -11,7 +11,8 @@ class Presentation extends React.Component {
 
   getState() {
     return {
-      page: slideStore.page
+      page: slideStore.getPage(),
+      slide: slideStore.getCurrentSlide()
     }
   }
 
@@ -21,11 +22,15 @@ class Presentation extends React.Component {
     window.onkeydown = (e) => {
       switch (e.keyIdentifier) {
         case 'Right':
-          PageActions.change(this.state.page + 1)
+          if (slideStore.hasNext()) {
+            PageActions.change(this.state.page + 1)
+          }
           break
 
         case 'Left':
-          PageActions.change(this.state.page - 1)
+          if (slideStore.hasPrev()) {
+            PageActions.change(this.state.page - 1)
+          }
           break
       }
     }
@@ -40,7 +45,13 @@ class Presentation extends React.Component {
   }
 
   render() {
-    return <div>{this.state.page}</div>
+    return (
+      <div>
+        <h1>{this.state.slide.title}</h1>
+        <div>{this.state.slide.body}</div>
+        <div>{this.state.page}</div>
+      </div>
+    )
   }
 }
 

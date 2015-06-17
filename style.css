@@ -8,6 +8,11 @@ body {
   margin: 50px 0 100px;
 }
 
+ul, ol {
+  text-align: left;
+  margin-left: 60px;
+}
+
 a {
   text-decoration: none;
 }

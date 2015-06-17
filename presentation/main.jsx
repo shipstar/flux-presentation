@@ -82,7 +82,7 @@ class Presentation extends React.Component {
     return (
       <div className='slide'>
         <div className='slide__title'>{this.state.slide.title}</div>
-        <div className='slide__body'>{this.state.slide.body}</div>
+        <div className='slide__body' dangerouslySetInnerHTML={{ __html: this.state.slide.body }}></div>
         <div className='slide__form'>{addSlideForm}</div>
         <div className='slide__nav'>
           <a href='#' onClick={e => this.toggleAddSlide(e)}>+</a>

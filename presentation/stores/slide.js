@@ -15,7 +15,7 @@ const rawSlides = [
   },
   {
     title: 'Why Flux?',
-    body: ''
+    body: `Every framework can be viewed as an attempt to say "the hardest part of writing a webapp is {X}, so here's some code to make that easier."`
   },
   {
     title: 'State is hard',
